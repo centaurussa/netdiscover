@@ -1,4 +1,6 @@
 ##### The module sends ARP requests to a certain range and waits for a response from the active devices. The module can monitor the overall activity(past and present) or by live scanning(present).
+
+![Example](/docs/Example.PNG)
 &nbsp;
 &nbsp;
 ## How to use it:
