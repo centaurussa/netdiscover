@@ -10,3 +10,11 @@
     
 * **By running the script**:
     * Handled by basic input
+
+## Requirements:
+   * Python 3:
+      * Scapy
+   * Windows:
+      * WinPcap
+   * Linux:
+      * Running the script as sudo
