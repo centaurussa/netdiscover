@@ -44,22 +44,19 @@ def header():
 
 
 def clear():
-	os.system('cls' if os.name == 'nt' else 'clear')
-
+	pass #os.system('cls' if os.name == 'nt' else 'clear')
 
 def getter():
-	answers = scapy.srp(cast/arp, timeout=1, verbose=False)[0]
+	global devices
+	answers = scapy.srp(cast/arp, timeout=0.5, verbose=False)[0]
 
-	devices= []
 	mac_lst = []
 
 	for answer in answers:
-		# Filter devices sith same MAC (Yes it happens)
 		if answer[-1].hwsrc not in [i['MAC'] for i in devices]:
 			devices.append({'IP':answer[-1].psrc, 'MAC':answer[-1].hwsrc})
 
-
-	with open('macs.txt', 'r') as f:
+	with open('macs.txt', 'r', encoding="utf8") as f:
 		for i in f.readlines():
 			if len(i) > 3:
 				mac_lst.append({'MAC':i[:9], 'Vendor':i[9:].rstrip("\n")})
@@ -75,6 +72,7 @@ def getter():
 
 
 def method_one():
+	global devices
 	clear()
 	header()
 	printed = []
@@ -88,6 +86,7 @@ def method_one():
 
 
 def method_two():
+	global devices
 	devices = getter()
 	clear()
 	header()
@@ -97,11 +96,12 @@ def method_two():
 
 
 def main():
+	global devices
+	devices = []
 	clear()
 	module_settings()
 
 	if not live:
-		header()
 		method_one()
 	elif live:
 		while 1:
